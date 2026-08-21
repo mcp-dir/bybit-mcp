@@ -1,0 +1,34 @@
+# Smithery configuration for Bybit
+# Schema: https://smithery.ai/docs/build/project-config
+# Remote HTTP MCP — server hosted at https://api.mcp.ai/p_bybit
+
+name: bybit-mcp
+displayName: "Bybit"
+description: >
+  Exchange de criptomoedas Bybit, saldo da conta unificada e da carteira Funding, posições abertas em derivativos, ordens, execuções com taxa por trade, empréstimos, bots e cotação de mercado, via API REST oficial V5, com cobertura total de leitura e de escrita. Criar e cancelar ordem exigem uma chave com permissão de negociação. Saque e transferência entre carteiras não são expostos. Autenticação por api_key e api_secret gerados na sua conta Bybit.
+
+version: 0.1.0
+license: MIT
+homepage: https://github.com/mcp-dir/bybit-mcp
+repository: https://github.com/mcp-dir/bybit-mcp
+
+tags:
+  - bybit
+  - brazil
+  - fin
+  - horizontal
+  - read-only
+
+# Remote HTTP MCP — sem startCommand local (servidor já hospedado)
+startCommand:
+  type: http
+  url: https://api.mcp.ai/p_bybit
+
+auth:
+  type: oauth2
+  resourceMetadataUrl: https://api.mcp.ai/p_bybit/.well-known/oauth-protected-resource
+  fallback:
+    type: agent-auth
+    description: >
+      Para clientes sem OAuth 2.1. O agente expõe uma tool authenticate(token).
+      Usuário gera o JWT em https://app.mcp.ai/agent-auth e cola no chat.
